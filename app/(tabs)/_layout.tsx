@@ -31,7 +31,7 @@ export default function TabLayout() {
         options={{
           title: "Calculator",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="number.square.fill" color={color} />
+            <IconSymbol size={28} name="plus.forwardslash.minus" color={color} />
           ),
         }}
       />

@@ -258,8 +258,13 @@ export default function SummaryModal({
               {content}
             </ScrollView>
             {sessionId && (
-              <TouchableOpacity style={styles.saveDealButton} onPress={onSaveDeal}>
-                <ThemedText style={styles.saveDealButtonText}>Save Deal</ThemedText>
+              <TouchableOpacity
+                style={styles.saveDealButton}
+                onPress={onSaveDeal}
+              >
+                <ThemedText style={styles.saveDealButtonText}>
+                  Save Deal
+                </ThemedText>
               </TouchableOpacity>
             )}
           </ThemedView>
@@ -292,7 +297,7 @@ const ItemRow = ({
       : item.sellPercentage;
 
   return (
-    <ThemedView style={styles.itemContainer}>
+    <ThemedView>
       <ThemedText style={styles.itemName}>
         {item.name ? item.name : `Item ${idx + 1}`} {isSplit && "- split"}
       </ThemedText>
@@ -372,9 +377,6 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginTop: 8,
   },
-  itemContainer: {
-    marginBottom: 8,
-  },
   itemRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -382,7 +384,6 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontWeight: "600",
-    marginBottom: 2,
   },
   itemDetails: {
     color: "#666",

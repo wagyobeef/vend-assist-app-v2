@@ -12,6 +12,7 @@ import CollectorOfferingSection from "@/components/CalculatorPage/CollectorOffer
 import DealStatusSection from "@/components/CalculatorPage/DealStatusSection";
 import SummaryModal from "@/components/CalculatorPage/SummaryModal";
 import VendorOfferingSection from "@/components/CalculatorPage/VendorOfferingSection";
+import TopBar from "@/components/shared/TopBar";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 
@@ -57,52 +58,58 @@ export default function CalculatorContent() {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardAvoidingView}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <ScrollView
-        ref={scrollViewRef}
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+    <ThemedView style={styles.container}>
+      <TopBar />
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoidingView}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <ThemedView style={styles.buttonContainer}>
-          <TouchableOpacity onPress={handleReset}>
-            <ThemedText style={styles.resetText}>Reset</ThemedText>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setShowSummaryModal(true)}>
-            <ThemedText style={styles.summarizeText}>Summarize</ThemedText>
-          </TouchableOpacity>
-        </ThemedView>
-        <DealStatusSection
-          vendorItems={vendorItems}
-          collectorItems={collectorItems}
-        />
-        <VendorOfferingSection
-          vendorItems={vendorItems}
-          setVendorItems={setVendorItems}
-          nextId={vendorNextId}
-          setNextId={setVendorNextId}
-        />
-        <CollectorOfferingSection
-          collectorItems={collectorItems}
-          setCollectorItems={setCollectorItems}
-          nextId={collectorNextId}
-          setNextId={setCollectorNextId}
-          scrollViewRef={scrollViewRef}
-        />
-        <SummaryModal
-          isVisible={showSummaryModal}
-          onClose={() => setShowSummaryModal(false)}
-          vendorItems={vendorItems}
-          collectorItems={collectorItems}
-        />
-      </ScrollView>
-    </KeyboardAvoidingView>
+        <ScrollView
+          ref={scrollViewRef}
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+        >
+          <ThemedView style={styles.buttonContainer}>
+            <TouchableOpacity onPress={handleReset}>
+              <ThemedText style={styles.resetText}>Reset</ThemedText>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setShowSummaryModal(true)}>
+              <ThemedText style={styles.summarizeText}>Summarize</ThemedText>
+            </TouchableOpacity>
+          </ThemedView>
+          <DealStatusSection
+            vendorItems={vendorItems}
+            collectorItems={collectorItems}
+          />
+          <VendorOfferingSection
+            vendorItems={vendorItems}
+            setVendorItems={setVendorItems}
+            nextId={vendorNextId}
+            setNextId={setVendorNextId}
+          />
+          <CollectorOfferingSection
+            collectorItems={collectorItems}
+            setCollectorItems={setCollectorItems}
+            nextId={collectorNextId}
+            setNextId={setCollectorNextId}
+            scrollViewRef={scrollViewRef}
+          />
+          <SummaryModal
+            isVisible={showSummaryModal}
+            onClose={() => setShowSummaryModal(false)}
+            vendorItems={vendorItems}
+            collectorItems={collectorItems}
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   keyboardAvoidingView: {
     flex: 1,
   },
@@ -111,7 +118,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   scrollContent: {
-    paddingTop: 64,
     paddingBottom: 80,
     padding: 16,
   },

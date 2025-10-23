@@ -1,7 +1,7 @@
-import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import TopBarTitle from "./TopBarTitle";
 
 export default function TopBar() {
   const insets = useSafeAreaInsets();
@@ -9,10 +9,7 @@ export default function TopBar() {
   return (
     <ThemedView style={[styles.container, { paddingTop: insets.top }]}>
       <ThemedView style={styles.content}>
-        <Text style={styles.title}>
-          <Text>Vend</Text>
-          <Text style={styles.assistText}>Assist</Text>
-        </Text>
+        <TopBarTitle />
       </ThemedView>
     </ThemedView>
   );

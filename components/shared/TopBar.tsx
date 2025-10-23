@@ -1,5 +1,6 @@
 import { ThemedView } from "@/components/themed-view";
 import { IconSymbol } from "@/components/ui/icon-symbol";
+import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import TopBarTitle from "./TopBarTitle";
@@ -7,11 +8,18 @@ import TopBarTitle from "./TopBarTitle";
 export default function TopBar() {
   const insets = useSafeAreaInsets();
 
+  const handleSettingsPress = () => {
+    router.push("/settings");
+  };
+
   return (
     <ThemedView style={[styles.container, { paddingTop: insets.top }]}>
       <ThemedView style={styles.content}>
         <TopBarTitle />
-        <TouchableOpacity style={styles.settingsButton} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.settingsButton}
+          onPress={handleSettingsPress}
+        >
           <IconSymbol name="gearshape" size={24} color="#000" />
         </TouchableOpacity>
       </ThemedView>

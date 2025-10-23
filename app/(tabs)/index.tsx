@@ -1,20 +1,5 @@
-import { StyleSheet } from "react-native";
-
-import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
+import TrackerPage from "@/components/TrackerPage/TrackerPage";
 
 export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title">Tracker</ThemedText>
-    </ThemedView>
-  );
+  return <TrackerPage />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

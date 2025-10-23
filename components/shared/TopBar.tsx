@@ -15,7 +15,6 @@ export default function TopBar({ title, left, right }: TopBarProps) {
   return (
     <ThemedView style={[styles.container, { paddingTop: insets.top }]}>
       <ThemedView style={styles.content}>
-        {left && <ThemedView style={styles.leftContainer}>{left}</ThemedView>}
         <ThemedView style={styles.centerContainer}>
           {typeof title === "string" ? (
             <Text style={styles.title}>{title}</Text>
@@ -23,7 +22,10 @@ export default function TopBar({ title, left, right }: TopBarProps) {
             title
           )}
         </ThemedView>
-        {right && <ThemedView style={styles.rightContainer}>{right}</ThemedView>}
+        {left && <ThemedView style={styles.leftContainer}>{left}</ThemedView>}
+        {right && (
+          <ThemedView style={styles.rightContainer}>{right}</ThemedView>
+        )}
       </ThemedView>
     </ThemedView>
   );
@@ -38,21 +40,23 @@ const styles = StyleSheet.create({
     height: 60,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
+    justifyContent: "center",
   },
   leftContainer: {
-    flex: 0,
+    position: "absolute",
+    left: 16,
+    height: 60,
     justifyContent: "center",
     alignItems: "flex-start",
   },
   centerContainer: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   rightContainer: {
-    flex: 0,
+    position: "absolute",
+    right: 16,
+    height: 60,
     justifyContent: "center",
     alignItems: "flex-end",
   },

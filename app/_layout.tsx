@@ -7,9 +7,11 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
+import { useEffect } from "react";
 
 import BackButton from "@/components/shared/BackButton";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { initDatabase } from "@/lib/database";
 
 export const unstable_settings = {
   anchor: "(tabs)",
@@ -17,6 +19,12 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    initDatabase().catch((error) => {
+      console.error("Failed to initialize database:", error);
+    });
+  }, []);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

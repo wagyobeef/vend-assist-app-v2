@@ -48,13 +48,18 @@ export default function SessionsList() {
 
     try {
       const db = getDatabase();
-      await db.runAsync("INSERT INTO sessions (name) VALUES (?)", sessionName);
+      await db.runAsync("INSERT INTO sessions (name) VALUES (?)", [
+        sessionName,
+      ]);
 
       setModalVisible(false);
       setSessionName("");
       await loadSessions();
     } catch (error) {
       console.error("Failed to create session:", error);
+      alert(
+        "Failed to create session. Please try resetting the database in Settings."
+      );
     }
   };
 
@@ -92,6 +97,18 @@ export default function SessionsList() {
     );
   }
 
+  const renderHeader = () => (
+    <View style={styles.header}>
+      <Text style={styles.headerTitle}>Sessions</Text>
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.addButtonText}>+</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
     <>
       <FlatList
@@ -100,6 +117,7 @@ export default function SessionsList() {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={renderEmptyState}
+        ListHeaderComponent={sessions.length > 0 ? renderHeader : null}
       />
 
       <Modal
@@ -148,8 +166,30 @@ export default function SessionsList() {
 
 const styles = StyleSheet.create({
   listContainer: {
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
     flexGrow: 1,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: 16,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "700",
+    color: "#000000",
+  },
+  addButton: {
+    padding: 4,
+  },
+  addButtonText: {
+    color: "rgb(59, 130, 246)",
+    fontSize: 32,
+    fontWeight: "300",
+    lineHeight: 32,
   },
   sessionCard: {
     backgroundColor: "#ffffff",

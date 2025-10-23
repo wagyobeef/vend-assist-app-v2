@@ -8,6 +8,7 @@ import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 
+import BackButton from "@/components/shared/BackButton";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
 export const unstable_settings = {
@@ -25,6 +26,7 @@ export default function RootLayout() {
             name="(tabs)"
             options={{
               headerShown: false,
+              headerBackTitle: "",
             }}
           />
           <Stack.Screen
@@ -34,8 +36,7 @@ export default function RootLayout() {
           <Stack.Screen
             name="settings"
             options={{
-              title: "Settings",
-              headerBackButtonDisplayMode: "minimal",
+              headerShown: false,
             }}
           />
         </Stack>

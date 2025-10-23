@@ -13,8 +13,11 @@ import DealStatusSection from "@/components/CalculatorPage/DealStatusSection";
 import SummaryModal from "@/components/CalculatorPage/SummaryModal";
 import VendorOfferingSection from "@/components/CalculatorPage/VendorOfferingSection";
 import TopBar from "@/components/shared/TopBar";
+import TopBarTitle from "@/components/shared/TopBarTitle";
+import { IconSymbol } from "@/components/ui/icon-symbol";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { router } from "expo-router";
 
 export default function CalculatorContent() {
   const [vendorItems, setVendorItems] = useState<
@@ -59,7 +62,14 @@ export default function CalculatorContent() {
 
   return (
     <ThemedView style={styles.container}>
-      <TopBar />
+      <TopBar
+        title={<TopBarTitle />}
+        right={
+          <TouchableOpacity onPress={() => router.push("/settings")}>
+            <IconSymbol name="gearshape" size={24} color="#000" />
+          </TouchableOpacity>
+        }
+      />
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
         behavior={Platform.OS === "ios" ? "padding" : "height"}

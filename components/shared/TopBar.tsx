@@ -1,27 +1,29 @@
 import { ThemedView } from "@/components/themed-view";
-import { IconSymbol } from "@/components/ui/icon-symbol";
-import { router } from "expo-router";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { ReactNode } from "react";
+import { StyleSheet, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import TopBarTitle from "./TopBarTitle";
 
-export default function TopBar() {
+interface TopBarProps {
+  title?: string | ReactNode;
+  left?: ReactNode;
+  right?: ReactNode;
+}
+
+export default function TopBar({ title, left, right }: TopBarProps) {
   const insets = useSafeAreaInsets();
-
-  const handleSettingsPress = () => {
-    router.push("/settings");
-  };
 
   return (
     <ThemedView style={[styles.container, { paddingTop: insets.top }]}>
       <ThemedView style={styles.content}>
-        <TopBarTitle />
-        <TouchableOpacity
-          style={styles.settingsButton}
-          onPress={handleSettingsPress}
-        >
-          <IconSymbol name="gearshape" size={24} color="#000" />
-        </TouchableOpacity>
+        {left && <ThemedView style={styles.leftContainer}>{left}</ThemedView>}
+        <ThemedView style={styles.centerContainer}>
+          {typeof title === "string" ? (
+            <Text style={styles.title}>{title}</Text>
+          ) : (
+            title
+          )}
+        </ThemedView>
+        {right && <ThemedView style={styles.rightContainer}>{right}</ThemedView>}
       </ThemedView>
     </ThemedView>
   );
@@ -34,20 +36,28 @@ const styles = StyleSheet.create({
   },
   content: {
     height: 60,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+  },
+  leftContainer: {
+    flex: 0,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  centerContainer: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row",
   },
-  settingsButton: {
-    position: "absolute",
-    right: 16,
-    padding: 8,
+  rightContainer: {
+    flex: 0,
+    justifyContent: "center",
+    alignItems: "flex-end",
   },
   title: {
     fontSize: 20,
     fontWeight: "600",
-  },
-  assistText: {
-    color: "rgb(197, 32, 24)",
   },
 });

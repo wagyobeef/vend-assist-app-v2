@@ -1,11 +1,11 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import TopBar from "@/components/shared/TopBar";
 import TopBarTitle from "@/components/shared/TopBarTitle";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { router } from "expo-router";
+import SessionsList from "@/components/TrackerPage/SessionsList";
 
 export default function TrackerPage() {
   return (
@@ -19,7 +19,7 @@ export default function TrackerPage() {
         }
       />
       <ThemedView style={styles.content}>
-        <ThemedText type="title">Tracker</ThemedText>
+        <SessionsList />
       </ThemedView>
     </ThemedView>
   );

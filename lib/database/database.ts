@@ -16,7 +16,6 @@ export const initDatabase = async (): Promise<SQLite.SQLiteDatabase> => {
     CREATE TABLE IF NOT EXISTS sessions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
-      date TEXT NOT NULL,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
   `);

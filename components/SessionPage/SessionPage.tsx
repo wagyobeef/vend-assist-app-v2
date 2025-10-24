@@ -62,7 +62,11 @@ export default function SessionPage() {
         left={<BackButton />}
         right={
           <TouchableOpacity onPress={handleEditPress} style={styles.editButton}>
-            <Ionicons name="create-outline" size={24} color="#000000" />
+            <Ionicons
+              name="create-outline"
+              size={24}
+              color="rgb(59, 130, 246)"
+            />
           </TouchableOpacity>
         }
       />

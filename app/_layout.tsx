@@ -5,11 +5,10 @@ import {
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
-import { useEffect } from "react";
 
-import BackButton from "@/components/shared/BackButton";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { initDatabase } from "@/lib/database";
 
@@ -19,12 +18,21 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const [dbInitialized, setDbInitialized] = React.useState(false);
 
   useEffect(() => {
-    initDatabase().catch((error) => {
-      console.error("Failed to initialize database:", error);
-    });
+    initDatabase()
+      .then(() => {
+        setDbInitialized(true);
+      })
+      .catch((error) => {
+        console.error("Failed to initialize database:", error);
+      });
   }, []);
+
+  if (!dbInitialized) {
+    return null; // or a loading screen
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -43,6 +51,12 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="settings"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="session/[id]"
             options={{
               headerShown: false,
             }}

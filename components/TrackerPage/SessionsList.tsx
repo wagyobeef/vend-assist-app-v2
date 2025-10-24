@@ -1,4 +1,5 @@
 import { getDatabase } from "@/lib/database";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   FlatList,
@@ -64,7 +65,10 @@ export default function SessionsList() {
   };
 
   const renderSession = ({ item }: { item: Session }) => (
-    <TouchableOpacity style={styles.sessionCard}>
+    <TouchableOpacity
+      style={styles.sessionCard}
+      onPress={() => router.push(`/session/${item.id}`)}
+    >
       <View style={styles.sessionInfo}>
         <Text style={styles.sessionName}>{item.name}</Text>
         <Text style={styles.sessionDate}>

@@ -3,9 +3,10 @@ import TopBar from "@/components/shared/TopBar";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { getDatabase } from "@/lib/database";
-import { useLocalSearchParams } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 interface Session {
   id: number;
@@ -49,9 +50,22 @@ export default function SessionPage() {
     );
   }
 
+  const handleEditPress = () => {
+    router.push("/edit-session");
+  };
+
   return (
     <ThemedView style={styles.container}>
-      <TopBar title={session?.name || "Session"} left={<BackButton />} />
+      <TopBar
+        title={session?.name || "Session"}
+        titleSize={18}
+        left={<BackButton />}
+        right={
+          <TouchableOpacity onPress={handleEditPress} style={styles.editButton}>
+            <Ionicons name="create-outline" size={24} color="#000000" />
+          </TouchableOpacity>
+        }
+      />
       <ThemedView style={styles.content}>
         <ThemedText type="title">Sessions</ThemedText>
       </ThemedView>
@@ -67,5 +81,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  editButton: {
+    padding: 8,
   },
 });

@@ -1,7 +1,11 @@
 import { useFonts } from "expo-font";
 import { StyleSheet, Text } from "react-native";
 
-export default function TopBarTitle() {
+interface TopBarTitleProps {
+  titleSize?: number;
+}
+
+export default function TopBarTitle({ titleSize = 20 }: TopBarTitleProps) {
   const [fontsLoaded] = useFonts({
     "Montserrat-Regular": require("@/assets/fonts/Montserrat-Regular.ttf"),
     "Montserrat-SemiBold": require("@/assets/fonts/Montserrat-SemiBold.ttf"),
@@ -13,7 +17,7 @@ export default function TopBarTitle() {
   }
 
   return (
-    <Text style={styles.title}>
+    <Text style={[styles.title, { fontSize: titleSize }]}>
       <Text>Vend</Text>
       <Text style={styles.assistText}>Assist</Text>
     </Text>
@@ -22,7 +26,6 @@ export default function TopBarTitle() {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 20,
     fontFamily: "Montserrat-Bold",
   },
   assistText: {

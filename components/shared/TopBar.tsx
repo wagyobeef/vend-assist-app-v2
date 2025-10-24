@@ -7,9 +7,15 @@ interface TopBarProps {
   title?: string | ReactNode;
   left?: ReactNode;
   right?: ReactNode;
+  titleSize?: number;
 }
 
-export default function TopBar({ title, left, right }: TopBarProps) {
+export default function TopBar({
+  title,
+  left,
+  right,
+  titleSize = 20,
+}: TopBarProps) {
   const insets = useSafeAreaInsets();
 
   return (
@@ -17,7 +23,7 @@ export default function TopBar({ title, left, right }: TopBarProps) {
       <ThemedView style={styles.content}>
         <ThemedView style={styles.centerContainer}>
           {typeof title === "string" ? (
-            <Text style={styles.title}>{title}</Text>
+            <Text style={[styles.title, { fontSize: titleSize }]}>{title}</Text>
           ) : (
             title
           )}
@@ -61,7 +67,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   title: {
-    fontSize: 20,
     fontWeight: "600",
   },
 });

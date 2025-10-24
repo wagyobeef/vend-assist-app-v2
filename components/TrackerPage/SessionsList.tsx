@@ -1,4 +1,5 @@
 import { getDatabase } from "@/lib/database";
+import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import {
@@ -66,7 +67,7 @@ export default function SessionsList() {
 
   const renderSession = ({ item }: { item: Session }) => (
     <TouchableOpacity
-      style={styles.sessionCard}
+      style={styles.sessionRow}
       onPress={() => router.push(`/session/${item.id}`)}
     >
       <View style={styles.sessionInfo}>
@@ -75,6 +76,7 @@ export default function SessionsList() {
           {new Date(item.created_at).toLocaleDateString()}
         </Text>
       </View>
+      <Ionicons name="chevron-forward" size={20} color="#999999" />
     </TouchableOpacity>
   );
 
@@ -122,6 +124,7 @@ export default function SessionsList() {
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={renderEmptyState}
         ListHeaderComponent={sessions.length > 0 ? renderHeader : null}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
 
       <Modal
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    marginBottom: 16,
+    marginBottom: 8,
   },
   headerTitle: {
     fontSize: 24,
@@ -195,23 +198,27 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     lineHeight: 32,
   },
-  sessionCard: {
+  sessionRow: {
     backgroundColor: "#ffffff",
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: "#e0e0e0",
+    paddingVertical: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 8,
   },
   sessionInfo: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flex: 1,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#e0e0e0",
+    marginHorizontal: 8,
   },
   sessionName: {
     fontSize: 16,
     fontWeight: "600",
     color: "#000000",
+    marginBottom: 4,
   },
   sessionDate: {
     fontSize: 14,

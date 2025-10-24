@@ -15,7 +15,6 @@ interface Session {
 
 export default function SessionPage() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  console.log("id", id);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 

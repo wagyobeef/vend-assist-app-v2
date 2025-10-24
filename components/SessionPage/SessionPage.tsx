@@ -61,7 +61,7 @@ export default function SessionPage() {
         titleSize={18}
         left={<BackButton />}
         right={
-          <TouchableOpacity onPress={handleEditPress} style={styles.editButton}>
+          <TouchableOpacity onPress={handleEditPress}>
             <Ionicons
               name="create-outline"
               size={24}
@@ -85,8 +85,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  editButton: {
-    padding: 8,
   },
 });

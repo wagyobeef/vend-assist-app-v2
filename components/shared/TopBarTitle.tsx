@@ -23,7 +23,7 @@ export default function TopBarTitle() {
 const styles = StyleSheet.create({
   title: {
     fontSize: 20,
-    fontFamily: "Montserrat-SemiBold",
+    fontFamily: "Montserrat-Bold",
   },
   assistText: {
     color: "rgb(197, 32, 24)",

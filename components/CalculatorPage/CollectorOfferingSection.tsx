@@ -291,7 +291,6 @@ function ItemRow({
               returnKeyType="done"
             />
             <ThemedView style={itemRowStyles.valueInputContainer}>
-              <ThemedText style={itemRowStyles.dollarLabel}>$</ThemedText>
               <TextInput
                 style={itemRowStyles.valueInput}
                 value={displayValue}

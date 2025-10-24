@@ -131,7 +131,7 @@ export default function DealStatusSection({
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 64,
+    paddingVertical: 48,
     borderBottomWidth: 1,
     borderBottomColor: "#e0e0e0",
     justifyContent: "center",

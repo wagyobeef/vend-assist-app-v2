@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
+import DealsList from "./DealsList";
 
 interface Session {
   id: number;
@@ -71,7 +72,7 @@ export default function SessionPage() {
         }
       />
       <ThemedView style={styles.content}>
-        <ThemedText type="title">Sessions</ThemedText>
+        <DealsList />
       </ThemedView>
     </ThemedView>
   );
@@ -83,7 +84,5 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
